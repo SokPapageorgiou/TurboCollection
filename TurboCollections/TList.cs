@@ -8,6 +8,8 @@ namespace TurboCollections
         {
             Console.WriteLine("Hello Turbo!");            
         }
+
+        public int Count => 0;
     }    
 }
 
