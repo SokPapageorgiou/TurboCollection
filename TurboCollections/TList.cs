@@ -25,6 +25,34 @@ namespace TurboCollections
         public void Set(int index, T value) => _items[index] = value;
         
         public void Clear() => _items = Array.Empty<T>();
+
+        public void RemoveAt(int index)
+        {
+            for (int i = index; i < _items.Length - 1; i++)
+            {
+                _items[i] = _items[i + 1];
+            }
+        }
+
+        public bool Contains(T item)
+        {
+            for (int i = 0; i < _items.Length; i++)
+            {
+                if (_items[i].Equals(item)) return true;
+            }
+
+            return false;
+        }
+
+        public int IndexOf(T item)
+        {
+            for (int i = 0; i < _items.Length; i++)
+            {
+                if (_items[i].Equals(item)) return i;
+            }
+
+            return -1;
+        }
     }    
 }
 

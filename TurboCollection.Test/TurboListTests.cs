@@ -71,6 +71,50 @@ namespace TurboCollection.Test
             
             Assert.AreEqual(666, temp.Get(2));
         }
+
+        [Test]
+        public void RemovesSecondElement()
+        {
+            var temp = new TList<float>();
+            
+            temp.Add(123);
+            temp.Add(1000);
+            temp.Add(82);
+            temp.Add(50);
+
+            temp.RemoveAt(1);
+            
+            Assert.AreNotEqual(1000, temp.Get(1));
+            Assert.AreEqual(82, temp.Get(1));
+        }
+
+        [Test]
+        public void CheckIfContainsANumber()
+        {
+            var temp = new TList<float>();
+            
+            temp.Add(123);
+            temp.Add(1000);
+            temp.Add(82);
+            temp.Add(50);
+            
+            Assert.True(temp.Contains(50));
+            Assert.False(temp.Contains(45));
+        }
+
+        [Test]
+        public void ReturnNumberByIndex()
+        {
+            var temp = new TList<float>();
+            
+            temp.Add(123);
+            temp.Add(1000);
+            temp.Add(82);
+            temp.Add(50);
+            
+            Assert.AreEqual(0, temp.IndexOf(123));
+            Assert.AreEqual(3, temp.IndexOf(50));
+        }
     }
 }
 
