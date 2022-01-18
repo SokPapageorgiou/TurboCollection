@@ -22,6 +22,8 @@ namespace TurboCollections
 
         public T Get(int index) => _items[index];
 
+        public void Set(int index, T value) => _items[index] = value;
+        
         public void Clear() => _items = Array.Empty<T>();
     }    
 }

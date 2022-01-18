@@ -56,6 +56,21 @@ namespace TurboCollection.Test
             
             Assert.AreEqual(0, temp.Count);
         }
+
+        [Test]
+        public void ReplacesThirdElement()
+        {
+            var temp = new TList<float>();
+            
+            temp.Add(123);
+            temp.Add(1000);
+            temp.Add(82);
+            temp.Add(50);
+
+            temp.Set(2, 666);
+            
+            Assert.AreEqual(666, temp.Get(2));
+        }
     }
 }
 
