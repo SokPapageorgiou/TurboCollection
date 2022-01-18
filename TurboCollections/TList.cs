@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq.Expressions;
 
 namespace TurboCollections
 {
@@ -11,11 +10,13 @@ namespace TurboCollections
 
         public T[] Items => _items;
 
-        public int Count => _items.Length;
+        public int Count { get; set; }
+
 
         public void Add(T item)
         {
-            Array.Resize(ref _items, Count + 1);
+            Count++;
+            Array.Resize(ref _items, Count);
             
             _items[^1] = item;
         }
@@ -23,20 +24,27 @@ namespace TurboCollections
         public T Get(int index) => _items[index];
 
         public void Set(int index, T value) => _items[index] = value;
-        
-        public void Clear() => _items = Array.Empty<T>();
+
+        public void Clear()
+        {
+            _items = Array.Empty<T>();
+            Count -= Count;
+        } 
 
         public void RemoveAt(int index)
         {
-            for (int i = index; i < _items.Length - 1; i++)
+            for (int i = index; i < Count - 1; i++)
             {
                 _items[i] = _items[i + 1];
             }
+
+            _items[Count - 1] = default;
+            Count--;
         }
 
         public bool Contains(T item)
         {
-            for (int i = 0; i < _items.Length; i++)
+            for (int i = 0; i < Count; i++)
             {
                 if (_items[i].Equals(item)) return true;
             }
@@ -46,13 +54,15 @@ namespace TurboCollections
 
         public int IndexOf(T item)
         {
-            for (int i = 0; i < _items.Length; i++)
+            for (int i = 0; i < Count; i++)
             {
                 if (_items[i].Equals(item)) return i;
             }
 
             return -1;
         }
+
+        public void Remove(T value) => RemoveAt(IndexOf(value)); 
     }    
 }
 

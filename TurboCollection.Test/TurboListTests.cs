@@ -115,6 +115,22 @@ namespace TurboCollection.Test
             Assert.AreEqual(0, temp.IndexOf(123));
             Assert.AreEqual(3, temp.IndexOf(50));
         }
+
+        [Test]
+        public void RemoveSecondNumberFromList()
+        {
+            var temp = new TList<float>();
+            
+            temp.Add(123);
+            temp.Add(1000);
+            temp.Add(82);
+            temp.Add(50);
+            
+            temp.Remove(1000);
+            
+            Assert.AreEqual(82, temp.Items[1]);
+            Assert.AreEqual(50, temp.Items[2]);
+        }
     }
 }
 
