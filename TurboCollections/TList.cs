@@ -44,12 +44,7 @@ namespace TurboCollections
 
         public bool Contains(T item)
         {
-            for (int i = 0; i < Count; i++)
-            {
-                if (_items[i].Equals(item)) return true;
-            }
-
-            return false;
+            return IndexOf(item) != -1;
         }
 
         public int IndexOf(T item)
@@ -62,7 +57,11 @@ namespace TurboCollections
             return -1;
         }
 
-        public void Remove(T value) => RemoveAt(IndexOf(value)); 
+        public void Remove(T value)
+        {
+            var index = IndexOf(value);
+            if(index > -1) RemoveAt(index); 
+        } 
     }    
 }
 

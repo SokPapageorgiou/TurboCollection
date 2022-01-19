@@ -54,7 +54,7 @@ namespace TurboCollection.Test
 
             temp.Clear();
             
-            Assert.AreEqual(0, temp.Count);
+            Assert.Zero(temp.Count);
         }
 
         [Test]
