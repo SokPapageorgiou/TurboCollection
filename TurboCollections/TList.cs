@@ -14,9 +14,16 @@ namespace TurboCollections
 
         public int Count { get; set; }
 
-        private void IncreaseBuffer()
+        public void IncreaseBuffer()
         {
-            _items = new T[_items.Length + 4];
+            var temp = new T[_items.Length + 4];
+            
+            for (int i = 0; i < _items.Length; i++)
+            {
+                temp[i] = _items[i];
+            }
+
+            _items = temp;
         }
 
 
