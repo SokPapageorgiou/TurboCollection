@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TurboCollections
 {
@@ -60,8 +61,17 @@ namespace TurboCollections
         public void Remove(T value)
         {
             var index = IndexOf(value);
-            if(index > -1) RemoveAt(index); 
-        } 
+            if (index == -1) return;
+            RemoveAt(index); 
+        }
+
+        public void AddRange(IEnumerable<T> collection)
+        {
+            foreach (var var in collection)
+            {
+                Add(var);
+            }
+        }
     }    
 }
 

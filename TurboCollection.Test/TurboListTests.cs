@@ -131,6 +131,21 @@ namespace TurboCollection.Test
             Assert.AreEqual(82, temp.Items[1]);
             Assert.AreEqual(50, temp.Items[2]);
         }
+
+        [Test]
+        public void AddThreeNumbersInARange()
+        {
+            var temp = new TList<float>();
+            
+            float[] numbers = {7,10,55};
+            temp.AddRange(numbers);
+            
+            Assert.AreEqual(7, temp.Items[0]);
+            Assert.AreEqual(10, temp.Items[1]);
+            Assert.AreEqual(55, temp.Items[2]);
+            
+            Assert.AreEqual(3, temp.Count);
+        }
     }
 }
 
