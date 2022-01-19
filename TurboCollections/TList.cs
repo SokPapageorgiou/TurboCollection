@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 
 namespace TurboCollections
 {
-    public class TList<T>
+    public class TList<T> : IEnumerable<T>
     {
-        public TList() =>  Console.WriteLine("Hello Turbo!");   
-        
+        public TList() => Console.WriteLine("Hello Turbo!");
+
         private T[] _items = Array.Empty<T>();
 
         public T[] Items => _items;
@@ -18,7 +20,7 @@ namespace TurboCollections
         {
             Count++;
             Array.Resize(ref _items, Count);
-            
+
             _items[^1] = item;
         }
 
@@ -30,7 +32,7 @@ namespace TurboCollections
         {
             _items = Array.Empty<T>();
             Count -= Count;
-        } 
+        }
 
         public void RemoveAt(int index)
         {
@@ -62,7 +64,7 @@ namespace TurboCollections
         {
             var index = IndexOf(value);
             if (index == -1) return;
-            RemoveAt(index); 
+            RemoveAt(index);
         }
 
         public void AddRange(IEnumerable<T> collection)
@@ -72,6 +74,48 @@ namespace TurboCollections
                 Add(var);
             }
         }
-    }    
+
+        public Enumerator GetEnumerator()
+        {
+            return new Enumerator(_items, Count); 
+        }
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() => GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        public struct Enumerator : IEnumerator<T>
+        {
+            private readonly T[] _items;
+            private readonly int _count;
+            private int _index;
+
+            public Enumerator(T[] items, int count)
+            {
+                _items = items;
+                _count = count;
+                _index = -1;
+                Current = default;
+            }
+            
+            public bool MoveNext()
+            {
+                if (_index >= _count) return false;
+                return ++_index < _count;
+            }
+
+            public void Reset() => _index = -1;
+
+            public T Current
+            {
+                get => _items[_index];
+                set => _items[_index] = value;
+            }
+
+            object IEnumerator.Current => Current;
+
+            public void Dispose() => Reset();
+        }
+    }
 }
 
