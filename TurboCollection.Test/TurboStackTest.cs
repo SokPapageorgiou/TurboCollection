@@ -119,7 +119,26 @@ namespace TurboCollection.Test
                 Assert.AreEqual(4, stack.Count);
             }
         }
-        
-        
+
+        public class Clear
+        {
+            [Test]
+            public void ClearStack()
+            {
+                var stack = new TStack<float>();
+
+                stack.Push(666);
+                stack.Push(555);
+                stack.Push(444);
+                stack.Push(333);
+                stack.Push(222);
+                
+                Assert.AreEqual(5, stack.Count);
+
+                stack.Clear();
+                
+                Assert.Zero(stack.Count);
+            }
+        }
     }
 }

@@ -35,9 +35,18 @@ namespace TurboCollections
 
         public T Peak() => _items[Count - 1];
 
-        public T Pop() => _items[--Count];
-        
-        
+        public T Pop()
+        {
+           var result = _items[--Count];
+           _items[Count] = default; 
+           return result;
+        } 
+
+        public void Clear()
+        {
+            Count -= Count;
+            _items = Array.Empty<T>();
+        }
 
     }
 }
