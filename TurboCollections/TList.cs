@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection.Metadata;
 
 namespace TurboCollections
 {
@@ -15,13 +14,19 @@ namespace TurboCollections
 
         public int Count { get; set; }
 
+        private void IncreaseBuffer()
+        {
+            _items = new T[_items.Length + 4];
+        }
+
 
         public void Add(T item)
         {
             Count++;
-            Array.Resize(ref _items, Count);
+            
+            if(Count > _items.Length) IncreaseBuffer();
 
-            _items[^1] = item;
+            _items[Count - 1] = item;
         }
 
         public T Get(int index) => _items[index];

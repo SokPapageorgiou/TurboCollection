@@ -26,7 +26,7 @@ namespace TurboCollection.Test
         {
             var list = new TList<float>();
             list.Add(84);
-            Assert.AreEqual(84, list.Items[^1]);
+            Assert.AreEqual(84, list.Items[list.Count - 1]);
         }
 
         [Test]
