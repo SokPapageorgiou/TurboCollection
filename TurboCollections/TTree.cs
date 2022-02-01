@@ -15,10 +15,22 @@ namespace TurboCollections
 
         public T GetLeftChild(int n)
         {
-            if (n >= _nodes.Length) 
-                return default; 
+            int index = n * 2 + 1;
+            
+            if (index >= _nodes.Length) 
+                return default!; 
                 
-            return _nodes[n * 2 + 1];
+            return _nodes[index];
+        }
+        
+        public T GetRightChild(int n)
+        {
+            int index = n * 2 + 2;
+            
+            if (index >= _nodes.Length) 
+                return default!; 
+                
+            return _nodes[index];
         }
         
         public T GetValue(int n)

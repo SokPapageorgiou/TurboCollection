@@ -32,5 +32,18 @@ namespace TurboCollection.Test
             Assert.AreEqual("f", tree.GetLeftChild(2));
             Assert.AreEqual("h", tree.GetLeftChild(3));
         }
+        
+        [Test]
+        public void ReturnRightChild()
+        {
+            var tree = new TTree<string>();
+
+            tree.Nodes = new[] {"a", "b", "c", "d", "e", "f", "g", "h"};
+            
+            Assert.AreEqual("c", tree.GetRightChild(0));
+            Assert.AreEqual("e", tree.GetRightChild(1));
+            Assert.AreEqual("g", tree.GetRightChild(2));
+            Assert.AreEqual(default, tree.GetRightChild(3));
+        }
     }
 }
