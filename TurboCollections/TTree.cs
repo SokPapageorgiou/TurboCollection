@@ -1,19 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace TurboCollections
 {
-    public class TTree<T>
+    public class TTree 
     {
-        private T[] _nodes;
+        private float[] _nodes;
         
-        public T[] Nodes
+        public float[] Nodes
         {
             get => _nodes;
             set => _nodes = value;
         }
 
-        public T GetLeftChild(int n)
+        public float GetLeftChild(int n)
         {
             int index = n * 2 + 1;
             
@@ -23,19 +24,28 @@ namespace TurboCollections
             return _nodes[index];
         }
         
-        public T GetRightChild(int n)
+        public float GetRightChild(int n)
         {
             int index = n * 2 + 2;
             
             if (index >= _nodes.Length) 
-                return default!; 
+                return float.NegativeInfinity; 
                 
             return _nodes[index];
         }
         
-        public T GetValue(int n)
+        public float GetValue(int n)
         {
             return _nodes[n];
         }
+
+        // public float BinarySearch(float item)
+        // {
+        //     int n = 0;
+        //
+        //     if (item == _nodes[n]) return item;
+        //     if(item(_nodes[n])){}
+        // }
+
     }
 }

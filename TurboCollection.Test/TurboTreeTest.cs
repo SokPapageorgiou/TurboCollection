@@ -9,7 +9,7 @@ namespace TurboCollection.Test
         [Test]
         public void ReturnItensFromTree()
         {
-            var tree = new TTree<float>();
+            var tree = new TTree();
 
             tree.Nodes = new float[] { 16, 44, 28, -9, 0 };
             
@@ -23,27 +23,27 @@ namespace TurboCollection.Test
         [Test]
         public void ReturnLeftChild()
         {
-            var tree = new TTree<string>();
+            var tree = new TTree();
 
-            tree.Nodes = new[] {"a", "b", "c", "d", "e", "f", "g", "h"};
+            tree.Nodes = new float[] {0, 1, 2, 3, 4, 5, 6, 7};
             
-            Assert.AreEqual("b", tree.GetLeftChild(0));
-            Assert.AreEqual("d", tree.GetLeftChild(1));
-            Assert.AreEqual("f", tree.GetLeftChild(2));
-            Assert.AreEqual("h", tree.GetLeftChild(3));
+            Assert.AreEqual(1, tree.GetLeftChild(0));
+            Assert.AreEqual(3, tree.GetLeftChild(1));
+            Assert.AreEqual(5, tree.GetLeftChild(2));
+            Assert.AreEqual(7, tree.GetLeftChild(3));
         }
         
         [Test]
         public void ReturnRightChild()
         {
-            var tree = new TTree<string>();
+            var tree = new TTree();
 
-            tree.Nodes = new[] {"a", "b", "c", "d", "e", "f", "g", "h"};
+            tree.Nodes = new float[] {0, 1, 2, 3, 4, 5, 6, 7};
             
-            Assert.AreEqual("c", tree.GetRightChild(0));
-            Assert.AreEqual("e", tree.GetRightChild(1));
-            Assert.AreEqual("g", tree.GetRightChild(2));
-            Assert.AreEqual(default, tree.GetRightChild(3));
+            Assert.AreEqual(2, tree.GetRightChild(0));
+            Assert.AreEqual(4, tree.GetRightChild(1));
+            Assert.AreEqual(6, tree.GetRightChild(2));
+            Assert.AreEqual(float.NegativeInfinity, tree.GetRightChild(3));
         }
     }
 }
