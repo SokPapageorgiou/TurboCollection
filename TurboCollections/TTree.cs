@@ -4,9 +4,8 @@ using System.Data;
 
 namespace TurboCollections
 {
-    public class TTree 
+    public class TTree
     {
-       
         
     }
 }
