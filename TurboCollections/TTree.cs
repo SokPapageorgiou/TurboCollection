@@ -17,7 +17,7 @@ namespace TurboCollections
     
     public class TTree
     {
-        public TNode[] nodes = new TNode[12];
+        public TNode[] nodes = new TNode[16];
 
         private int _index;
         
@@ -31,15 +31,11 @@ namespace TurboCollections
             else
             {
                 if (nodes[_index].Value > item)
-                {
                     _index = _index * 2 + 1;
-                    Add(item);
-                }
-                else
-                {
-                    _index = _index * 2 + 2;
-                    Add(item);
-                } 
+                
+                else _index = _index * 2 + 2;
+                
+                Add(item);
             }
         }
     }
