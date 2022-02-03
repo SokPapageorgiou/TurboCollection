@@ -55,5 +55,33 @@ namespace TurboCollection.Test
             Assert.AreEqual(-1, tree.nodes[3].Value);
             Assert.AreEqual(77, tree.nodes[6].Value);
         }
+
+        [Test]
+        public void SearchNumberContained()
+        {
+            var tree = new TTree();
+            
+            tree.Add(5);
+            tree.Add(10);
+            tree.Add(2);
+            tree.Add(77);
+            tree.Add(-1);
+            
+            Assert.AreEqual(2, tree.Search(2).Value);
+        }
+        
+        [Test]
+        public void SearchNumberNotContained()
+        {
+            var tree = new TTree();
+            
+            tree.Add(5);
+            tree.Add(10);
+            tree.Add(2);
+            tree.Add(77);
+            tree.Add(-1);
+            
+            Assert.IsNull(tree.Search(12));
+        }
     }
 }

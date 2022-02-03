@@ -20,6 +20,7 @@ namespace TurboCollections
         public TNode[] nodes = new TNode[16];
 
         private int _index;
+        private TNode returner;
         
         public void Add(int item)
         {
@@ -30,14 +31,40 @@ namespace TurboCollections
             }
             else
             {
-                if (nodes[_index].Value > item)
-                    _index = _index * 2 + 1;
-                
-                else _index = _index * 2 + 2;
-                
+                MoveForward(item);
                 Add(item);
             }
         }
+
+        public TNode Search(int target)
+        {
+            if (nodes[_index] != null)
+            {
+                if(nodes[_index].Value == target)
+                    returner = nodes[_index];
+                
+                _index = 0;
+            }
+            else
+            {
+                MoveForward(target);
+                if (_index <= nodes.Length) Search(target);
+            }
+
+            return returner;
+        }
+
+        private void MoveForward(int item)
+        {
+            if (nodes[_index].Value > item)
+                _index = GoLeft(_index);
+
+            else _index = GoRight(_index);
+        }
+
+        private int GoLeft(int n) => n * 2 + 1;
+        private int GoRight(int n) => n * 2 + 2;
+        
     }
 }
 
